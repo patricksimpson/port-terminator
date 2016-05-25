@@ -14,7 +14,7 @@ if [ $port ]; then
     read -p "Do you wish to terminate these programs? (Y/n)" -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-      lsof -P | grep ":$port" | awk '{print $2}' | xargs kill -9
+      lsof -t -i tcp:$port | xargs kill -9
       echo 'Hasta la vista'
     fi
   else
